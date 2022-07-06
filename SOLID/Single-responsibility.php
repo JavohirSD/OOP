@@ -64,7 +64,7 @@ class ConvertToPdf implements ConvertDocumentInterface
     }
 }
 
-class Document2
+class Document
 {
     protected $title;
     protected $content;
