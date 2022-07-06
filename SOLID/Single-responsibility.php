@@ -2,13 +2,13 @@
 /**
  * Single-responsibility:
  * SRP bu har bir classdan faqat yagon maqsadda foydalanishdir.
- * Ya'ni quyidagi 1-misolda Document nomli classdan hujjat haqidagi asosiy malumotlarni olish uchun va shu hujjatni turli formatlarga konvertatsiya qilish uchun foydalanilgan.
- * 1-misoldagi Document class ham ma'lumot berish uchun ham konvertatsiya uchun xizmat qilmoqda va SRP prinsipini buzilmoqda.
- * 2-misolda esa Document class faqat document haqida malumot berish uchun xizmat qiladi. Konvertatsiya uchun esa alohida classlar yaratilgan.
+ * Ya'ni bitta classga ko'plab turli xil vazifalarni yuklatish tizim arxitekturasini buzulishiga olib kelishi mumkun.
  */
 
 
 // SRP ga to'g'ri kelmaydigan holat:
+// Document nomli classdan hujjat haqidagi asosiy malumotlarni olish uchun va shu hujjatni turli formatlarga konvertatsiya qilish uchun foydalanilgan.
+// Bitta classga turli xil vazifalarni yuklatish SRP prinsipini buzulishiga olib keladi.
 class Document
 {
     protected $title;
@@ -42,7 +42,7 @@ class Document
 
 // SRP ga to'g'ri keladigan holat:
 // Bunda Document classi faqat hujjat haqida ma'lumot berish uchun xizmat qiladi.
-// Convertatsiya uchun esa alohida interfeys va classlar yaratish to'g'ri yechim bo'ladi.
+// Convertatsiya va boshqa amallar uchun esa alohida interfeys va/yoki classlar yaratish to'g'ri yechim bo'ladi.
 interface ConvertDocumentInterface
 {
     public function convert(Document $document);
@@ -64,7 +64,7 @@ class ConvertToPdf implements ConvertDocumentInterface
     }
 }
 
-class Document
+class Document2
 {
     protected $title;
     protected $content;
