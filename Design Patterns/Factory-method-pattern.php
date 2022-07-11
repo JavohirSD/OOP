@@ -4,10 +4,10 @@
  * Ya'ni bir xil turdagi klasslar uchun umumiy Factory klass yaratib olinadi va ularning obyektlari faqat shu factory ichidagi metod orqali yaratiladi.
  * Bu patterdan foydalanishning 2 ta asosiy afzalligi va foydali tomoni bor.
  * Birinchisi. Sub klasslarni o'zgartirganda, o'chirganda, qayta nomlaganda yoki boshqasi bilan almashtirganda lohiyadagi
- * shu klass ishlatilgan barcha qismlarni o'zgartirib chiqilmaydi.
+ * shu klass obyekti ishlatilgan barcha qismlarni o'zgartirib chiqilmaydi.
  * Ikkinchisi. Agar har safar sub klass obyektini yaratish uchun yoki yaratishdan oldin biror logika ishlatishga to'g'ri kelsa
  * shu logikani loyihaning barcha qismlarida ortiqcha va takrorlanuvchi kod sifatida olib yurilmaydi.
- * Factory patternda foydalanish majburiy emas va doimo to'g'ri yechim bo'lmasligi ham mumkun.
+ * Factory patterndan foydalanish majburiy emas va doimo to'g'ri yechim bo'lmasligi ham mumkun.
  * Ammo katta tizimlarni loyihalashda ushbu pattern yordamida turli xil muammolarni oldini olish mumkun.
  * Bu patternni yana ham yaxshiroq tushunish uchun quyidagi oddiy misolni ko'rib chiqamiz.
  */
