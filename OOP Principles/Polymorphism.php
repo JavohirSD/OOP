@@ -1,10 +1,9 @@
 <?php
 /**
-Polymorphism - umumiy bir xil maqsadga yo'naltirilgan classlarning metod va xususiyatlariga ularning ota interfeysi orqali murojaat qilish.
-Sodda qilib aytganda classning ota interfeysi (yoki abstract class) dagi metodlardan foydalanish.
+Polymorphism - Voris klasslar ota klassning ochiq interfeysiga ega bo'lishi yoki ularni override qilishi.
+Sodda qilib aytganda ota klassning public va protected metodlaridan foydalanish yoki ularni voris klassda qayta yozish.
 Masalan bizda Person nomli interfeys bor va qolgan klasslar undan meros olgan.
-Demak voris classlarda ham ota interfeysdagi metodlar bo'lishi shart.
-Bu holatda biz ota interfeysdagi metod orqali barcha voris klasslardagi xuddi shunday metodlarga kira olamiz.
+Demak voris klasslarda ham ota interfeysdagi metodlardan foydalanish mumkun.
  */
 
 interface Person
