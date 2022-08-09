@@ -1,38 +1,56 @@
 <?php
 /**
-Polymorphism - Voris klasslar ota klassning ochiq interfeysiga ega bo'lishi yoki ularni override qilishi.
-Sodda qilib aytganda ota klassning public va protected metodlaridan foydalanish yoki ularni voris klassda qayta yozish.
-Masalan bizda Person nomli interfeys bor va qolgan klasslar undan meros olgan.
-Demak voris klasslarda ham ota interfeysdagi metodlardan foydalanish mumkun.
+ * Polymorphism - Voris klasslar ota klassning ochiq interfeysiga ega bo'lishi va uni override/overload qila olishidir.
+Polimorfizmning quyidagi uchta asosiy xususiyati mavjud:
+1. Voris klasslarni ota klass o'rnida ham ishlatish mumkun.
+2. Voris klasslarda ota klassning ochiq(public/protected) metodlaridan foydalanaish mumkun.
+3. Ota klassdan meros bo'lib o'tgan metodlarni voris klassda xuddi shu nom bilan override yoki overload qilish mumkun.
+Polimorfizmni quyidagi sodda misolda ko'rib chiqishimiz mumkun:
  */
 
-interface Person
+// Asosiy ota interfeys
+interface PersonInterface
 {
     public function greet();
 }
 
-class English implements Person
+class Person implements PersonInterface
 {
-    public function greet()
+    public function greet(): string
+    {
+       return 'Greeting!';
+    }
+}
+
+// voris klasslar
+class English extends Person
+{
+    // voris klasslarda meros bo'lib o'tgan metodni override qilish mumkun.
+    public function greet(): string
     {
         return 'Hello!';
     }
 }
 
-class German implements Person
+class German extends Person
 {
-    public function greet()
+    public function greet(): string
     {
         return 'Hallo!';
     }
 }
 
-class French implements Person
+class French extends Person
 {
-    public function greet()
+    public function greet(): string
     {
         return 'Bonjour!';
     }
+}
+
+// Voris klasslarni ota klass o'rnida ham ishlatish mumkun.
+function greetings(Person $person){
+    return $person->greet();
 }
 
 $people = [
@@ -42,5 +60,5 @@ $people = [
 ];
 
 foreach ($people as $person) {
-    echo $person->greet() . '<br>';
+    echo greetings($person) . '<br>';
 }
