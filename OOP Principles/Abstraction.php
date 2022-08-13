@@ -1,6 +1,6 @@
 <?php
 /**
-Abstraction - bu foydalanuvchiga faqatgina kerakli ma'lumot ko'rsatib imkon qadar keraksiz ma'lumotlarni yashirishdir.
+Abstraction - bu foydalanuvchiga faqatgina kerakli ma'lumotni ko'rsatib imkon qadar keraksiz ma'lumotlarni yashirishdir.
 Ya'ni klass tarkibida qanday metodlar borligini va ular qanday vazifani bajarishini bilamiz bu biz uchun aniq bo'ladi.
 Ammo u(abstract/mavhum) metodlar ichida qanday logika va amallar bajarilishi bizga nomalum.
 Biror abstract metodga qandaydir o'zgarish kiritilsa,loyihadagi shu metod ishlatilgan qismlarga ta'sir qilmasligi kerak.
@@ -41,5 +41,5 @@ $triangle = new Triangle(3, 4, 5);
 
 // $triangle obyektida calcArea() nomli metod borligi bizga ma'lum.
 // Va ushbu metod berilgan uchburchak yuzasini hisoblab berishi ham ma'lum.
-// Ammo qanday bu metod ichida qanday jarayon borishi biz uchun mavhumdir.
+// Ammo bu metod ichida qanday jarayon borishi biz uchun mavhumdir.
 echo "Area = " . $triangle->calcArea();
