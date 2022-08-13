@@ -1,26 +1,32 @@
-<?php 
+<?php
 /**
 Abstraction - bu foydalanuvchiga faqatgina kerakli ma'lumot ko'rsatib imkon qadar keraksiz ma'lumotlarni yashirishdir.
-Quyidagi misolda uchburchak yuzasini hisoblash uchun classda calcArea() metodi bor.
-Uchburchak yuzini hisoblash uchun bu metodga tomonlarni berishni o'zi yetarli.
-Hisoblash jarayonini esa foydalanuchiga ko'rsatilmaydi.
-**/
+Ya'ni klass tarkibida qanday metodlar borligini va ular qanday vazifani bajarishini bilamiz bu biz uchun aniq bo'ladi.
+Ammo u(abstract/mavhum) metodlar ichida qanday logika va amallar bajarilishi bizga nomalum.
+Biror abstract metodga qandaydir o'zgarish kiritilsa,loyihadagi shu metod ishlatilgan qismlarga ta'sir qilmasligi kerak.
+Abstraksiyani quyidagi sodda misolda ko'rib chiqamiz.
+ */
 
+
+// Asosiy klassni yaratib olamiz
 class Triangle
 {
-    private $a;
-    private $b;
-    private $c;
+    private int $a;
+    private int $b;
+    private int $c;
 
-    public function __construct($aVal, $bVal, $cVal)
+    // Boshlang'ich qiymatlarni o'zlashtiramiz
+    public function __construct(int $aVal,int $bVal,int $cVal)
     {
         $this->a = $aVal;
         $this->b = $bVal;
         $this->c = $cVal;
     }
 
-    public function calcArea()
+    // Abstrakt metod yaratib olamiz.
+    public function calcArea(): float
     {
+        // Bu yerdagi hisoblash logikasi va amallarni foydalanuvchi bilishi muhum emas.
         $a = $this->a;
         $b = $this->b;
         $c = $this->c;
@@ -33,5 +39,7 @@ class Triangle
 
 $triangle = new Triangle(3, 4, 5);
 
-// Bizga faqat natija kerak. Hisoblash jarayoni esa mavhumligicha qolgani maqul.
+// $triangle obyektida calcArea() nomli metod borligi bizga ma'lum.
+// Va ushbu metod berilgan uchburchak yuzasini hisoblab berishi ham ma'lum.
+// Ammo qanday bu metod ichida qanday jarayon borishi biz uchun mavhumdir.
 echo "Area = " . $triangle->calcArea();
