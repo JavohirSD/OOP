@@ -55,9 +55,7 @@ abstract class EmailSender
         return $response;
     }
 
-    // Abstrakt klassda public metod bo'lishi mumkun emas.
-    // Shu sababli bu metodni abstract public qilib olamiz.
-    // Abstrakt public metod va xususiyatlar voris klasslarda elon qilinishi majburiy bo'ladi.
+    // Abstrakt klassdagi abstrakt metodlarni voris klasslarda elon qilinishi majburiy bo'ladi.
     abstract public function getStatus(array $response) : string;
 }
 
