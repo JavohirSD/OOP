@@ -1,29 +1,23 @@
 <?php
+
 /**
- *  Abstrakt klassni ahamiatini tushunish uchun avval quyidagi muammoli vaziyatni ko'rib chiqaylik.
- *  Yangiliklar sayti obunchilarining email manizillariga har doim yangi postlarni yuborib turishimiz kerak bo'ladi.
- *  Sayt boshida faqat MailRu servisi orqali barchaga email yuborib turar edi.
- *  Lekin keyinchalik MailRu bilan muammo bo'lgach YandexMail orqali yuborishga qaror qildik.
- *  Ammo MailRu va YandexEmail dan qaytadigan response ikki xil. Ya'ni endi MailRu uchun yozilgan kodimiz YandexMail uchun ishlamaydi.
- *  Shu sababli YandexMail uchun butunlay boshqacha kod yozib chiqdik.
- *  Oradan vaqt o'tgach Yandexda ham muammolar chiqa boshladi va biz Gmail dan foydalanishga qaror qildik.
- *  Endi Yandex uchun yozgan kodimiz ham Gmail uchun mos kelmasligi aniq.
- *  Natijada saytimizda juda ko'plab duplikat kodlar, keraksiz metodlar va klasslar ko'payib tizim arxitekturasi tushunarsiz axvolga kelib qoldi.
- *  Tasavvur qiling agar endi yana Gmail dan kechib boshidagi MailRu ga qaytmoqchi bo'lsak yoki yana yangi email servis qo'shoqchi bo'lsakchi ?
- *  Bunday muammoli vaziyatlarni biz abstrakt klasslar yordamida hal qilishimiz mumkun.
- *  Abstrakt klasslar bizga duplikat kodlar bo'lmasligini va tizimni ixcham, o'zgaruvhan qilishga yordam beradi.
+ * Abstrakt klass bu bir xil vazifani turli yo'llar bilan bajaruvchi klasslardagi takrorlanuvchi qismlarni o'z ichiga olgan shablondir.
+ * Masalan quyidagi misolda mijozlarga email yuborish uchun bir nechta servislardan foydalanganmiz va ularni har biri uchun alohida klasslar yozilgan.
+ * Ammo bu klasslarda email yuborish deyarli bir xil ketma-ketlik va metod orqali bajariladi.
+ * Umumiy qismlarni har bir klassda takror-takror yozib chiqmaslik uchun ularni bitta abstrakt klassga yozib olamiz.
+ * Keyinchalik qo'shiladigan yangi servis klasslar ham shu shablondan meros olib yoziladi.
+ * Abstrakt klassdan foydalanish orqali biz umumiy klasslarda bir xil interfeysga ega bo'lamiz va takrorlanuvchi kodlarni oldini olamiz.
  *
- * Quyidagi sodda misolda muammoni oddiy yechimini ko'rib chiqamiz:
  */
 
-
 // Umumiy va takrorlanuvchi qismlarni o'z ichiga oladigan asosiy ota abstrakt klassni yaratib olamiz
+// Bu klass voris klasslar uchun shablon vazifasini bajaradi.
 abstract class EmailSender
-{ 
+{
     protected string $token;
     protected string $endpoint;
-    
-    public function __construct(string $token,string $endpoint) 
+
+    public function __construct(string $token,string $endpoint)
     {
         $this->token = $token;
         $this->endpoint = $endpoint;
@@ -59,8 +53,8 @@ abstract class EmailSender
     abstract public function getStatus(array $response) : string;
 }
 
-// Avval boshida biz faqat MailRu servisidan foydalangan edik.
-// Bu klass ota abstract klassga voris bo'ladi.
+// Aabstrakt ota klassdan meros olamish orqali undagi metod va xususiyatlarni ham o'zlashiramiz.
+// Yani har bir email servis klassda construktor va sendEmail() metodlarini qaytadan yozib chiqishimiz shart emas
 class MailruEmail extends EmailSender
 {
 
@@ -75,7 +69,7 @@ class MailruEmail extends EmailSender
     }
 }
 
-// Keyingi Yandex Email servisi uchun ham xuddi yuqoridagi abstrakt ota klassdan meros olamiz.
+
 class YandexEmail extends EmailSender
 {
     public function getStatus(array $response): string
@@ -87,7 +81,7 @@ class YandexEmail extends EmailSender
     }
 }
 
-// Gmail va bundan keyin qo'shiladigan yangi email servislar ham xuddi shu tartibda yaratib boriladi.
+
 class GoogleEmail extends EmailSender
 {
     public function getStatus(array $response): string
@@ -105,8 +99,8 @@ class EmailController
 {
     //  Hozirda amalda bo'lgan email servisni tanlab olamiz
     public EmailSender $gateway;
-    
-    public function __construct(EmailSender $gateway) 
+
+    public function __construct(EmailSender $gateway)
     {
         $this->gateway = $gateway;
     }
@@ -116,18 +110,15 @@ class EmailController
     public function sendBulkEmail(array $messages)
     {
         foreach ($messages as $message) {
-
-            // Barcha servislarda email yuborish bir xil nomli metod orqali bajariladi.
+            
+            // Barcha servislar bir xil interfeysga ega.
             $response = $this->gateway->sendEmail($message['email'], $message['subject'], $message['body']);
-
-            // Xabar statusini olish esa barcha servislar uchun individual logika asosida bajariladi.
             echo $this->gateway->getStatus($response);
         }
     }
 }
 
-// Mijozlar va xabar matnidan iborat massiv. Buni ma'lumotlar bazasidan yuklab olinadi
-// (PHP Generatorlardan foydalanish tavsiya etiladi.)
+// Mijozlar va xabar matnidan iborat massiv.
 $messages = [
     ['email' => 'johndoe1@example.com', 'subject' => 'Greeting', 'body' => 'Hello John !'],
     ['email' => 'johndoe2@example.com', 'subject' => 'Greeting', 'body' => 'Hello John !'],
@@ -135,12 +126,7 @@ $messages = [
 ];
 
 // Amaldagi aktiv email servis klassidan obyekt yaratamiz.
-// Bir qator kod bilan istalgan vaqtda boshqa servisga o'tishimiz mumkun.
-
 $gateway = new GoogleEmail('GOOGLE_TOKEN', 'https://google.com');
-// $gateway = new MailruEmail('MAILRU_TOKEN', 'https://mail.ru');
-// $gateway = new YandexEmail('YANDEX_EMAIL', 'https://yandex.ru');
-
 
 // Boshqaruvchi klass obyektini yaratamiz va unga aktiv email servis obyektini yuboramiz.
 $controller = new EmailController($gateway);
