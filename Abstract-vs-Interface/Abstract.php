@@ -53,7 +53,7 @@ abstract class EmailSender
     abstract public function getStatus(array $response) : string;
 }
 
-// Aabstrakt ota klassdan meros olamish orqali undagi metod va xususiyatlarni ham o'zlashiramiz.
+// Abstrakt ota klassdan meros olish orqali undagi metod va xususiyatlarni ham o'zlashiramiz.
 // Yani har bir email servis klassda construktor va sendEmail() metodlarini qaytadan yozib chiqishimiz shart emas
 class MailruEmail extends EmailSender
 {
@@ -110,7 +110,7 @@ class EmailController
     public function sendBulkEmail(array $messages)
     {
         foreach ($messages as $message) {
-            
+
             // Barcha servislar bir xil interfeysga ega.
             $response = $this->gateway->sendEmail($message['email'], $message['subject'], $message['body']);
             echo $this->gateway->getStatus($response);
