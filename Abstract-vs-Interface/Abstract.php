@@ -6,8 +6,9 @@
  * Ammo bu klasslarda email yuborish deyarli bir xil ketma-ketlik va metod orqali bajariladi.
  * Umumiy qismlarni har bir klassda takror-takror yozib chiqmaslik uchun ularni bitta abstrakt klassga yozib olamiz.
  * Keyinchalik qo'shiladigan yangi servis klasslar ham shu shablondan meros olib yoziladi.
+ * Abstrakt ota klassdagi realizatsiya qilingan shablon funksiyalarni voris klasslarda ovirride qila olmaymiz.
  * Abstrakt klassdan foydalanish orqali biz umumiy klasslarda bir xil interfeysga ega bo'lamiz va takrorlanuvchi kodlarni oldini olamiz.
- *
+ * 
  */
 
 // Umumiy va takrorlanuvchi qismlarni o'z ichiga oladigan asosiy ota abstrakt klassni yaratib olamiz
