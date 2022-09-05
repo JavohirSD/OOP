@@ -11,7 +11,7 @@
  * this - statik metodlar ichida qo'llab bo'lmaydi.
  * this - Parent klassda 'new $this' voris klass obyektini qaytaradi.
  *
- * parent - joriy klassning otasini ko'rsatadi. Ya'ni so'ralgan obyekt klasining eng quyi ota klassni.
+ * parent - joriy klassning otasini ko'rsatadi. Ya'ni so'ralgan obyekt klasining eng quyi otasini.
  *          Quyidagi misolda natija A emas B klassni ko'rsatadi:
  *          class A {}
  *          class B extends A {}
