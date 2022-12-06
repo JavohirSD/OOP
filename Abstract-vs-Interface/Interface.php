@@ -73,7 +73,7 @@ class SaveDB implements Save
 
     // Saqlash jarayoni barcha klasslarda turlichi bo'ladi.
     public function save($date){
-        echo $date.' сохранено в БД <br>';
+        echo $date.' Bazaga saqlandi <br>';
     }
 }
 
@@ -83,7 +83,7 @@ class SaveFile implements Save
     protected function openFile(){}
 
     public function save($date){
-        echo $date.' сохранено в файл <br>';
+        echo $date.' faylga saqlandi <br>';
     }
 
     protected function closeFile(){}
@@ -95,7 +95,7 @@ class SaveSession implements Save
     protected function openSession(){}
 
     public function save($date){
-        echo $date.' сохранено в сессию <br>';
+        echo $date.' sessiyaga saqlandi <br>';
     }
 }
 
