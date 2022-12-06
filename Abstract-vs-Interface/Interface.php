@@ -67,7 +67,7 @@ interface Save
 
 // Interfeys bizga umumiy va majburiy metodlarni belgilab beradi.
 // Ammo uni realizatsiyasi har bir klass uchun turlicha bo'ladi.
-class saveDB implements Save
+class SaveDB implements Save
 {
     protected function connectDb(){}
 
@@ -103,17 +103,17 @@ class SaveSession implements Save
 class Data {
     public $data;
     public Save $driver; // drayver bir turdagi klasslarning umumiy abstraksiyasiga bog'liq qilib yaratiladi.
-    
+
     // drayver va malumotni yuklab olamiz.
     public function __construct($driver, $data) {
         $this->date = $data;
         $this->driver = $driver;
     }
-    
+
     // Ushbu metodni o'zgartirmasdan istalgancha yangi driver qo'shish/almashtirish mumkun.
     public function save(){
-        $data = $this->validate($this->date); 
-        $this->driver->save($data);  
+        $data = $this->validate($this->date);
+        $this->driver->save($data);
     }
 
     public function validate($data){
