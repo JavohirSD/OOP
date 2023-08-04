@@ -73,7 +73,6 @@ class shareFacade
     }
 }
 
-
 // Kerakli argumentlar asosida Facade obyektimizni yaratib olamiz.
 $facadeObj = new shareFacade(new TwitterShare(), new FacebookShare(), new RedditShare());
 
