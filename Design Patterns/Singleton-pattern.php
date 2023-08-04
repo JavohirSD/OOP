@@ -26,7 +26,7 @@ class Singleton
     // klassning yangi obyekti yaratiladi.
     public static function getInstance()
     {
-        if (self::$instance == null) {
+        if (self::$instance === null) {
             self::$instance = new Singleton();
         }
 
@@ -48,10 +48,10 @@ class ConnectDb
     private $conn;
 
     // Bazaga kirish ma'lumotlari
-    private $host = 'localhost';
-    private $name = 'DB_NAME';
-    private $user = 'DB_USERNAME';
-    private $pass = 'DB_PASSWORD';
+    private string $host = 'localhost';
+    private string $name = 'DB_NAME';
+    private string $user = 'DB_USERNAME';
+    private string $pass = 'DB_PASSWORD';
 
     // Private constructor orqali bazaga bog'lanish
     private function __construct()
@@ -69,7 +69,7 @@ class ConnectDb
     // Aks holda yangi obyekt yaratiladi.
     public static function getInstance()
     {
-        if (!self::$instance) {
+        if (self::$instance === null) {
             self::$instance = new ConnectDb();
         }
 
