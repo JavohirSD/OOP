@@ -1,7 +1,7 @@
 <?php
 /**
  * Open-closed Principle:
- * Tizim strukturasi uni kengaytirish uchun ochiq va qulay bo'lishi kerak ammo o'zgartirish kiritish uchun
+ * Tizim strukturasi uni kengaytirish uchun ochiq va qulay bo'lishi kerak ammo ichkariga o'zgartirish kiritish uchun
  * yopiq bo'lishi kerak. Ya'ni tizimning kengaytirilishi quyi pog'onadagi classlar va ularning metodlarini ishlashiga
  * hech qanday ta'sir qilmasligi kerak.
  */
