@@ -45,7 +45,7 @@ interface UserRepositoryInterface
 // Kerakli model uchun repository klassni yaratib olamiz.
 // Quyida userlarni olish uchun faqat Eloquent ORM orqali bazadaga murojaat qiluvchi repository klass keltirilgan.
 // Bu yerda userlarni API orqali yoki boshqa protokollar orqali olinadigan holatlar uchun ham alohida repository klass yaratish mumkun.
-class EloquentUserRepository implements UserRepositoryInterface
+class EloquentDbUserRepository implements UserRepositoryInterface
 {
     public function all()
     {
@@ -81,14 +81,15 @@ class UserController extends Controller
     // Ayni vaqtdagi aktual repository klass obyektini ushlab turish uchun quyidagicha xususiyat elon qilamiz.
     private UserRepositoryInterface $userRepository;
 
-    // Repository klass obyektini konstruktor orqali User klassga initsializatsiya qilib olamiz
+    // Repository klass obyektini konstruktor orqali User klassga inject qilib olamiz
     public function __construct(UserRepositoryInterface $user)
     {
         $this->userRepository = $user;
     }
 
     // Bazaga barcha murojatlar model orqali emas balki repository klass metodlari orqali amalga oshiriladi.
-    // Keyinchalik User olinadigan manba(baza,api yoki protokol) o'zgarganida User klassga hech qanday tasir ko'rsatmaydi.
+    // Keyinchalik User olinadigan manba(baza,api yoki protokol) o'zgarganida User controller klassga hech qanday tasir ko'rsatmaydi.
+    // Shunchaki respozitoryani yangisiga o'zgartirish yetarli bo'ladi.
     public function index()
     {
         return $this->userRepository->all();
