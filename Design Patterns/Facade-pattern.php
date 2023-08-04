@@ -23,6 +23,7 @@ class TwitterShare
 {
     function tweet($status, $url)
     {
+        // Bu yerda 50 qator kod bo'lishi mumkun
         echo 'Tweet: ' . $status . ' from:' . $url;
     }
 }
@@ -32,6 +33,7 @@ class FacebookShare
 {
     function share($url)
     {
+        // Bu yerda 50 qator kod bo'lishi mumkun
         echo 'Shared on facebook:' . $url;
     }
 }
@@ -41,6 +43,7 @@ class RedditShare
 {
     function reddit($url, $title)
     {
+        // Bu yerda 50 qator kod bo'lishi mumkun
         echo 'Reddit! url:' . $url . ' title:' . $title;
     }
 }
@@ -70,13 +73,9 @@ class shareFacade
     }
 }
 
-// Kerakli klasslarning obyektlarini yaratib olamiz
-$twitterObj  = new TwitterShare();
-$facebookObj = new FacebookShare();
-$redditObj   = new RedditShare();
 
-// Facade obyektimizni yaratib olamiz.
-$facadeObj = new shareFacade($twitterObj, $facebookObj, $redditObj);
+// Kerakli argumentlar asosida Facade obyektimizni yaratib olamiz.
+$facadeObj = new shareFacade(new TwitterShare(), new FacebookShare(), new RedditShare());
 
 // Yangi postni barcha ijtimoiy tarmoqlarga joylash uchun atigi bitta metodda foydalanamiz.
 $facadeObj->share('https://example.com', 'My greatest post', 'Read my greatest post ever.');
