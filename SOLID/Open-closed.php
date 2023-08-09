@@ -70,8 +70,8 @@ class Rectangle implements Shape
 
     public function __construct(float $width, float $height)
     {
-        $this->title   = $title;
-        $this->content = $content;
+        $this->width   = $width;
+        $this->height = $height;
     }
 
     // 3. Har bir shakl uchun maxsus yuzani hisoblash metodi va formulasi mavjud.
