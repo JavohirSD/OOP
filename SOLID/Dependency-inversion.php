@@ -9,14 +9,22 @@
 
 // Dependency Inversion ga zid bo'lgan holat:
 // Bu yerda UserDB yuqori modul, MySQLConnection esa quyi modul hisoblanadi.
+class MySQLConnection
+{
+      public function connect() {
+        // Return the MySQL connection...
+    }
+}
+
+
 class UserDB
 {
-    private $dbConnection;
+    private MySQLConnection $dbConnection;
 
     // Agar qachondir tizim MySQL dan PostgreSQL ga o'tkazilsa
     // UserDB klassni qayta yozib chiqishga to'g'ri keladi (Bu esa OCP prinsipiga ham zid).
     // Chunki bu tizim abstraksiyaga emas aynan bitta klass obyektiga qaram bo'lib qolgan.
-    public function __construct($dbConnection)
+    public function __construct(MySQLConnection $dbConnection)
     {
         $this->$dbConnection = $dbConnection;
     }
